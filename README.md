@@ -65,7 +65,7 @@ sudo systemctl disable example.service
 You may have wondered what the After= directive did. It simply means that your service must be started after the network is ready.
 
 By default, systemd does not restart your service if the program exits for whatever reason. This is usually not what you want for a service that must be always available, so we’re instructing it to always restart on exit:
-``
+```
 Restart=always
 ```
 You could also use on-failure to only restart if the exit status is not 0.
