@@ -61,3 +61,23 @@ To disable your service on every reboot
 ```
 sudo systemctl disable example.service
 ```
+
+You may have wondered what the After= directive did. It simply means that your service must be started after the network is ready.
+
+By default, systemd does not restart your service if the program exits for whatever reason. This is usually not what you want for a service that must be always available, so we’re instructing it to always restart on exit:
+``
+Restart=always
+```
+You could also use on-failure to only restart if the exit status is not 0.
+
+By default, systemd attempts a restart after 100ms. You can specify the number of seconds to wait before attempting a restart, using:
+```
+RestartSec=1
+```
+By default, when you configure Restart=always as we did, systemd gives up restarting your service if it fails to start more than 5 times within a 10 seconds interval. Forever.
+There are two [Unit] configuration options responsible for this:
+```
+StartLimitBurst=5
+StartLimitIntervalSec=10
+```
+The RestartSec directive also has an impact on the outcome: if you set it to restart after 3 seconds, then you can never reach 5 failed retries within 10 seconds.
