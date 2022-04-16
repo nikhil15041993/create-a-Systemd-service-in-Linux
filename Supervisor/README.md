@@ -131,6 +131,14 @@ supervisor> status
 ```
 
 Using status you can view again the current execution state of each program after making any changes:
-``
+```
 supervisor> status
 ```
+
+
+
+## supervisord pros
+
+* Any user can manage processes. No need to be superuser.
+* Has nice web interface to manage process.
+* Works on any distro
